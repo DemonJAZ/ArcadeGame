@@ -21,9 +21,12 @@ Enemy.prototype.update = function(dt) {
     if(this.x < 505)
     {
       this.x += (150*dt);
+    }else{
+      this.x=-90;
     }
 
-    if(this.x < player.x + 30 && this.x + 60 > player.x && this.y < player.y + 60 && this.y + 40 > player.y) {
+    if( (this.x < player.x + 30) && (this.x + 60 > player.x)
+         && (this.y < player.y + 60) && (this.y + 40 > player.y)) {
 		    player.reset();
     }
 };
@@ -36,24 +39,24 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var player = function(x,y){
+var Player = function(x,y){
   this.sprite = 'images/char-boy.png';
   this.x = x;
   this.y = y;
 };
 
-player.prototype.update = function(dt){
-  if(player.y < 2){
+Player.prototype.update = function(dt){
+  if(this.y < 2){
     alert("CONGRATULATIONS YOU WON!!!")
-    player.reset();
+    this.reset();
   }
 };
 
-player.prototype.render = function() {
+Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-player.prototype.reset = function(){
+Player.prototype.reset = function(){
   location.reload();
 }
 
@@ -69,15 +72,13 @@ var enemy4 = new Enemy(-490, 140);
 var enemy5 = new Enemy(-690, 140);
 var enemy6 = new Enemy(-490, 60);
 var enemy7 = new Enemy(-890, 230);
-var enemy8 = new Enemy(-590, 60);
-var enemy9 = new Enemy(-190, 230);
-var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6,enemy7,enemy8];
-var player = new player(playerX,playerY);
+var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+var player = new Player(playerX,playerY);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 
-player.handleInput = function(dir){
+Player.prototype.handleInput = function(dir){
   switch (dir) {
     case 'left':if(this.x>0)
                   this.x-=100;
