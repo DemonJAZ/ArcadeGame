@@ -9,6 +9,6 @@ This is implementation of  classic arcade game Frogger as one of project of udac
 
 ## Controls
 
-Use standard up , down , left and right arrow keys to move the boy, avoid getting hit by bugs
+Use standard up , down , left and right arrow keys to move the boy, avoid getting hit by bugs, Reach the water to win.
 
 **Good Luck Have Fun**
